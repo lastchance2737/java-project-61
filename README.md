@@ -6,13 +6,12 @@
 
 Brain Games
 
-1 - Greeting
-2 - Even ([asciinema](https://asciinema.org/a/jOIrVAyMhTuTO6I0JHaoKOZ7X))
-0 - Exit
+1. Greeting
+2. Even ([asciinema](https://asciinema.org/a/jOIrVAyMhTuTO6I0JHaoKOZ7X))
+0. Exit
 
 ## Run
 
-'''sh
+```sh
 make run-dist
-'''
-
+```

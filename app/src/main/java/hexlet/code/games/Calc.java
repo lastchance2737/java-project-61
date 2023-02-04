@@ -5,7 +5,7 @@ import hexlet.code.Engine;
 public class Calc {
     public static void game() {
         Engine.welcome();
-        var username = Engine.getUsername();
+        Engine.setUsername();
         System.out.println("What is the result of the expression?");
 
         var index = 0;
@@ -16,10 +16,6 @@ public class Calc {
 
             System.out.print("Question: " + firstNumber);
             switch (Engine.getRand(Engine.OPERATORS_COUNT)) {
-                case 0 -> { // plus
-                    answer = firstNumber + secondNumber;
-                    System.out.print(" + ");
-                }
                 case 1 -> { // minus
                     answer = firstNumber - secondNumber;
                     System.out.print(" - ");
@@ -28,19 +24,23 @@ public class Calc {
                     answer = firstNumber * secondNumber;
                     System.out.print(" * ");
                 }
+                default -> { //plus
+                    answer = firstNumber + secondNumber;
+                    System.out.print(" + ");
+                }
             }
             System.out.println(secondNumber);
 
             var userAnswer = Engine.getAnswer();
 
             if (!Engine.isNumeric(userAnswer)) {
-                Engine.wrongAnswer(userAnswer, Integer.toString(answer), username);
+                Engine.wrongAnswer(userAnswer, Integer.toString(answer));
                 break;
             }
             if (answer == Integer.parseInt(userAnswer)) {
-                Engine.correctAnswer(index, username);
+                Engine.correctAnswer(index);
             } else {
-                Engine.wrongAnswer(userAnswer, Integer.toString(answer), username);
+                Engine.wrongAnswer(userAnswer, Integer.toString(answer));
                 break;
             }
         }

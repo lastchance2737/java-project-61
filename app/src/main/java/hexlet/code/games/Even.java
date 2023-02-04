@@ -2,13 +2,13 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-import java.util.Scanner;
 
 public class Even {
     public static void game() {
         Engine.welcome();
-        var username = Engine.getUsername();
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
+        Engine.setUsername();
+        String rules = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+        System.out.println(rules);
 
         var index = 0;
         while (index++ < Engine.ROUNDS) {
@@ -24,18 +24,14 @@ public class Even {
                 var flagAnswer = userAnswer.equalsIgnoreCase("yes");
 
                 if (isNoResidue != flagAnswer) {
-                    Engine.wrongAnswer(userAnswer, answer, username);
+                    Engine.wrongAnswer(userAnswer, answer);
                     break;
                 }
-
-                Engine.correctAnswer(index, username);
-
+                Engine.correctAnswer(index);
             } else {
-                Engine.wrongAnswer(userAnswer, answer, username);
+                Engine.wrongAnswer(userAnswer, answer);
                 break;
             }
         }
     }
-
-
 }

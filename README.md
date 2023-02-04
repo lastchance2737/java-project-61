@@ -8,6 +8,7 @@ Brain Games
 
 1. Greeting
 2. Even ([asciinema](https://asciinema.org/a/jOIrVAyMhTuTO6I0JHaoKOZ7X))
+3. Calc
 0. Exit
 
 ## Run

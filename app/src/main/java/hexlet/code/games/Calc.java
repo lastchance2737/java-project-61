@@ -4,12 +4,9 @@ import hexlet.code.Engine;
 
 public class Calc {
     public static void game() {
-        Engine.welcome();
-        Engine.setUsername();
-        System.out.println("What is the result of the expression?");
+        Engine.startGame();
 
-        var index = 0;
-        while (index++ < Engine.ROUNDS) {
+        while (Engine.index++ < Engine.ROUNDS) {
             var firstNumber = Engine.getRand();
             var secondNumber = Engine.getRand();
             var answer = 0;
@@ -38,7 +35,7 @@ public class Calc {
                 break;
             }
             if (answer == Integer.parseInt(userAnswer)) {
-                Engine.correctAnswer(index);
+                Engine.correctAnswer();
             } else {
                 Engine.wrongAnswer(userAnswer, Integer.toString(answer));
                 break;

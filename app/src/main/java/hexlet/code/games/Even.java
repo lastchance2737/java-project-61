@@ -5,13 +5,9 @@ import hexlet.code.Engine;
 
 public class Even {
     public static void game() {
-        Engine.welcome();
-        Engine.setUsername();
-        String rules = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-        System.out.println(rules);
+        Engine.startGame();
 
-        var index = 0;
-        while (index++ < Engine.ROUNDS) {
+        while (Engine.index++ < Engine.ROUNDS) {
             var number = Engine.getRand();
             var isNoResidue = number % 2 == 0;
             var answer = isNoResidue ? "yes" : "no";
@@ -20,14 +16,15 @@ public class Even {
 
             var userAnswer = Engine.getAnswer();
 
-            if (userAnswer.equalsIgnoreCase("yes") || userAnswer.equalsIgnoreCase("no")) {
+            if (userAnswer.equalsIgnoreCase("yes")
+                    || userAnswer.equalsIgnoreCase("no")) {
                 var flagAnswer = userAnswer.equalsIgnoreCase("yes");
 
                 if (isNoResidue != flagAnswer) {
                     Engine.wrongAnswer(userAnswer, answer);
                     break;
                 }
-                Engine.correctAnswer(index);
+                Engine.correctAnswer();
             } else {
                 Engine.wrongAnswer(userAnswer, answer);
                 break;

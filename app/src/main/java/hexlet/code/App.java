@@ -14,16 +14,14 @@ public class App {
         var choice = scanner.nextLine();
 
         switch (choice) {
-            case "1": {
+            case "1" -> {
                 Cli.greeting();
-                break;
             }
-            case "2": {
+            case "2" -> {
                 Even.game();
-                break;
             }
-
-            default: break;
+            default -> {
+            }
         }
     }
 }

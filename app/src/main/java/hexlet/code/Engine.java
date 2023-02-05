@@ -16,6 +16,7 @@ public class Engine {
     private static final String PRIME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     private static final String WELCOME = "Welcome to the Brain Games!";
     private static final int RAND_STANDARD = 50;
+    private static final int RAND_FROM = 1;
     public static final int ROUNDS = 3;
     public static final int OPERATORS_COUNT = 3;
     public static final int PROGRESSION_STEP_FROM = 2;
@@ -120,11 +121,11 @@ public class Engine {
     }
 
     public static int getRand(int range) {
-        return getRand(0, range);
+        return getRand(RAND_FROM, range);
     }
 
     public static int getRand() {
-        return getRand(0, RAND_STANDARD);
+        return getRand(RAND_FROM, RAND_STANDARD);
     }
 
     public static int lowCommonMultiple(int a, int b) {

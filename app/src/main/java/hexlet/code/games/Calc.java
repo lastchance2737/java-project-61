@@ -6,7 +6,8 @@ public class Calc {
     public static void game() {
         Engine.startGame();
 
-        while (Engine.index++ < Engine.ROUNDS) {
+        int index = Engine.START_INDEX;
+        while (index++ < Engine.ROUNDS) {
             var firstNumber = Engine.getRand();
             var secondNumber = Engine.getRand();
             var answer = "";
@@ -30,7 +31,7 @@ public class Calc {
 
             var userAnswer = Engine.getAnswer();
             if (answer.equalsIgnoreCase(userAnswer)) {
-                Engine.correctAnswer();
+                Engine.correctAnswer(index);
                 continue;
             }
             Engine.wrongAnswer(userAnswer, answer);

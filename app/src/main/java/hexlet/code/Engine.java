@@ -1,6 +1,10 @@
 package hexlet.code;
 
-import hexlet.code.games.*;
+import hexlet.code.games.Calc;
+import hexlet.code.games.Even;
+import hexlet.code.games.Gcd;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
 
 import java.util.Scanner;
 
@@ -10,16 +14,25 @@ public class Engine {
     private static final String GCD_RULE = "Find the greatest common divisor of given numbers.";
     private static final String PROGRESSION_RULE = "What number is missing in the progression?";
     private static final String PRIME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    private static final String WELCOME = "Welcome to the Brain Games!";
+    private static final int RAND_STANDARD = 50;
     public static final int ROUNDS = 3;
     public static final int OPERATORS_COUNT = 3;
     public static final int PROGRESSION_STEP_FROM = 2;
     public static final int PROGRESSION_STEP_TO = 10;
     public static final int PROGRESSION_LENGTH_FROM = 5;
     public static final int PROGRESSION_LENGTH_TO = 10;
-    public static final int[] PRIME_NUMBERS = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101};
+    public static final int[] PRIME_NUMBERS = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47};
     private static String playerName;
-    public static int choice;
-    public static int index = 0;
+    private static int choice;
+    public static final int START_INDEX = 0;
+    private static final int START_GREET = 1;
+    private static final int START_EVEN = 2;
+    private static final int START_CALC = 3;
+    private static final int START_GCD = 4;
+    private static final int START_PROGRESSION = 5;
+    private static final int START_PRIME = 6;
+    private static final int START_EXIT = 0;
 
     public static void startGame() {
         Engine.welcome();
@@ -28,7 +41,7 @@ public class Engine {
     }
 
     private static void welcome() {
-        System.out.println("Welcome to the Brain Games!");
+        System.out.println(WELCOME);
     }
 
     private static void setUsername() {
@@ -39,62 +52,38 @@ public class Engine {
     }
 
     private static void gameRule() {
-        var ruleString = "";
-        switch (choice) {
-            case 2 -> {
-                ruleString = EVEN_RULE;
-            }
-            case 3 -> {
-                ruleString = CALC_RULE;
-            }
-            case 4 -> {
-                ruleString = GCD_RULE;
-            }
-            case 5 -> {
-                ruleString = PROGRESSION_RULE;
-            }
-            case 6 -> {
-                ruleString = PRIME_RULE;
-            }
-            default -> {
-            }
-        }
+        var ruleString = switch (choice) {
+            case START_EVEN -> EVEN_RULE;
+            case START_CALC -> CALC_RULE;
+            case START_GCD -> GCD_RULE;
+            case START_PROGRESSION -> PROGRESSION_RULE;
+            case START_PRIME -> PRIME_RULE;
+            default -> "";
+        };
         System.out.println(ruleString);
     }
 
     public static void menu() {
-        System.out.print("""
-                Please enter the game number and press Enter.
-                1 - Greet
-                2 - Even
-                3 - Calc
-                4 - GCD
-                5 - Progression
-                6 - Prime
-                0 - Exit
-                Your choice:\s""");
+        System.out.println("Please enter the game number and press Enter.");
+        System.out.println(START_GREET + " - Greet");
+        System.out.println(START_EVEN + " - Even");
+        System.out.println(START_CALC + " - Calc");
+        System.out.println(START_GCD + " - GCD");
+        System.out.println(START_PROGRESSION + " - Progression");
+        System.out.println(START_PRIME + " - Prime");
+        System.out.println(START_EXIT + " - Exit");
+        System.out.print("Your choice: ");
+
         Scanner scanner = new Scanner(System.in);
         Engine.choice = scanner.nextInt();
 
         switch (Engine.choice) {
-            case 1 -> {
-                Cli.greeting();
-            }
-            case 2 -> {
-                Even.game();
-            }
-            case 3 -> {
-                Calc.game();
-            }
-            case 4 -> {
-                Gcd.game();
-            }
-            case 5 -> {
-                Progression.game();
-            }
-            case 6 -> {
-                Prime.game();
-            }
+            case START_GREET -> Cli.greeting();
+            case START_EVEN -> Even.game();
+            case START_CALC -> Calc.game();
+            case START_GCD -> Gcd.game();
+            case START_PROGRESSION -> Progression.game();
+            case START_PRIME -> Prime.game();
             default -> {
             }
         }
@@ -109,9 +98,9 @@ public class Engine {
         wrongAnswer(userAnswer, Integer.toString(correctAnswer));
     }
 
-    public static void correctAnswer() {
+    public static void correctAnswer(int index) {
         System.out.println("Correct!");
-        if (Engine.index == Engine.ROUNDS) {
+        if (index == Engine.ROUNDS) {
             Engine.congratulations();
         }
     }
@@ -135,7 +124,7 @@ public class Engine {
     }
 
     public static int getRand() {
-        return getRand(0, 100);
+        return getRand(0, RAND_STANDARD);
     }
 
     public static int lowCommonMultiple(int a, int b) {

@@ -5,7 +5,9 @@ import hexlet.code.Engine;
 public class Prime {
     public static void game() {
         Engine.startGame();
-        while (Engine.index++ < Engine.ROUNDS) {
+
+        int index = Engine.START_INDEX;
+        while (index++ < Engine.ROUNDS) {
             var number = Engine.getRand();
             var answer = Engine.isPrimeNumber(number) ? "yes" : "no";
 
@@ -13,7 +15,7 @@ public class Prime {
             var userAnswer = Engine.getAnswer();
 
             if (answer.equalsIgnoreCase(userAnswer)) {
-                Engine.correctAnswer();
+                Engine.correctAnswer(index);
                 continue;
             }
             Engine.wrongAnswer(userAnswer, answer);

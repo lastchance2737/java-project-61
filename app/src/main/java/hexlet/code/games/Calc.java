@@ -9,7 +9,7 @@ public class Calc {
         while (Engine.index++ < Engine.ROUNDS) {
             var firstNumber = Engine.getRand();
             var secondNumber = Engine.getRand();
-            var answer = 0;
+            int answer;
 
             System.out.print("Question: " + firstNumber);
             switch (Engine.getRand(Engine.OPERATORS_COUNT)) {
@@ -29,17 +29,12 @@ public class Calc {
             System.out.println(secondNumber);
 
             var userAnswer = Engine.getAnswer();
-
-            if (!Engine.isNumeric(userAnswer)) {
-                Engine.wrongAnswer(userAnswer, Integer.toString(answer));
+            if (!Engine.isNumeric(userAnswer)
+                    || !Engine.isCorrectAnswer(answer, userAnswer)) {
+                Engine.wrongAnswer(userAnswer, answer);
                 break;
             }
-            if (answer == Integer.parseInt(userAnswer)) {
-                Engine.correctAnswer();
-            } else {
-                Engine.wrongAnswer(userAnswer, Integer.toString(answer));
-                break;
-            }
+            Engine.correctAnswer();
         }
     }
 }

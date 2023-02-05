@@ -18,17 +18,15 @@ public class Even {
 
             if (userAnswer.equalsIgnoreCase("yes")
                     || userAnswer.equalsIgnoreCase("no")) {
-                var flagAnswer = userAnswer.equalsIgnoreCase("yes");
 
-                if (isNoResidue != flagAnswer) {
-                    Engine.wrongAnswer(userAnswer, answer);
-                    break;
+                var flagAnswer = userAnswer.equalsIgnoreCase("yes");
+                if (isNoResidue == flagAnswer) {
+                    Engine.correctAnswer();
+                    continue;
                 }
-                Engine.correctAnswer();
-            } else {
-                Engine.wrongAnswer(userAnswer, answer);
-                break;
             }
+            Engine.wrongAnswer(userAnswer, answer);
+            break;
         }
     }
 }

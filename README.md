@@ -9,7 +9,8 @@ Brain Games
 1. Greeting
 2. Even ([asciinema](https://asciinema.org/a/jOIrVAyMhTuTO6I0JHaoKOZ7X))
 3. Calc ([asciinema](https://asciinema.org/a/eT3wUi8wFbJF13wmhfhZCREeP))
-4. Nano ([asciinema](https://asciinema.org/a/PZqjzML32FTWLS6g7sHMtOnRn))
+4. GCD ([asciinema](https://asciinema.org/a/PZqjzML32FTWLS6g7sHMtOnRn))
+5. Progression ([asciinema](https://asciinema.org/a/a2PwalSi33puPPAmFxHdUr40R))
 0. Exit
 
 ## Run

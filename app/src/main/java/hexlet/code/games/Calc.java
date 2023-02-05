@@ -9,32 +9,32 @@ public class Calc {
         while (Engine.index++ < Engine.ROUNDS) {
             var firstNumber = Engine.getRand();
             var secondNumber = Engine.getRand();
-            int answer;
+            var answer = "";
 
             System.out.print("Question: " + firstNumber);
             switch (Engine.getRand(Engine.OPERATORS_COUNT)) {
                 case 1 -> { // minus
-                    answer = firstNumber - secondNumber;
+                    answer = "" + (firstNumber - secondNumber);
                     System.out.print(" - ");
                 }
                 case 2 -> { // multiplication
-                    answer = firstNumber * secondNumber;
+                    answer = "" + (firstNumber * secondNumber);
                     System.out.print(" * ");
                 }
-                default -> { //plus
-                    answer = firstNumber + secondNumber;
+                default -> { // plus
+                    answer = "" + (firstNumber + secondNumber);
                     System.out.print(" + ");
                 }
             }
             System.out.println(secondNumber);
 
             var userAnswer = Engine.getAnswer();
-            if (!Engine.isNumeric(userAnswer)
-                    || !Engine.isCorrectAnswer(answer, userAnswer)) {
-                Engine.wrongAnswer(userAnswer, answer);
-                break;
+            if (answer.equalsIgnoreCase(userAnswer)) {
+                Engine.correctAnswer();
+                continue;
             }
-            Engine.correctAnswer();
+            Engine.wrongAnswer(userAnswer, answer);
+            break;
         }
     }
 }

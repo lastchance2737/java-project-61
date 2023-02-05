@@ -2,16 +2,16 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-public class Gcd {
+public class Prime {
     public static void game() {
         Engine.startGame();
         while (Engine.index++ < Engine.ROUNDS) {
-            var firstNumber = Engine.getRand();
-            var secondNumber = Engine.getRand();
-            var answer = "" + Engine.lowCommonMultiple(firstNumber, secondNumber);
+            var number = Engine.getRand();
+            var answer = Engine.isPrimeNumber(number) ? "yes" : "no";
 
-            System.out.println("Question: " + firstNumber + " " + secondNumber);
+            System.out.println("Question: " + number);
             var userAnswer = Engine.getAnswer();
+
             if (answer.equalsIgnoreCase(userAnswer)) {
                 Engine.correctAnswer();
                 continue;

@@ -12,6 +12,7 @@ public class Progression {
             var progressionLength = Engine.getRand(Engine.PROGRESSION_LENGTH_FROM, Engine.PROGRESSION_LENGTH_TO);
             var hiddenNumber = Engine.getRand(progressionLength);
             var answer = startNumber + step * hiddenNumber;
+            var answerToString = "" + answer;
 
             StringBuilder progression = new StringBuilder();
             for (int i = 0; i < progressionLength; i++) {
@@ -26,12 +27,12 @@ public class Progression {
 
             System.out.println("Question:" + progression);
             var userAnswer = Engine.getAnswer();
-            if (!Engine.isNumeric(userAnswer)
-                    || !Engine.isCorrectAnswer(answer, userAnswer)) {
-                Engine.wrongAnswer(userAnswer, answer);
-                break;
+            if (answerToString.equalsIgnoreCase(userAnswer)) {
+                Engine.correctAnswer();
+                continue;
             }
-            Engine.correctAnswer();
+            Engine.wrongAnswer(userAnswer, answer);
+            break;
         }
     }
 }

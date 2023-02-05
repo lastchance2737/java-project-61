@@ -11,6 +11,7 @@ Brain Games
 3. Calc ([asciinema](https://asciinema.org/a/eT3wUi8wFbJF13wmhfhZCREeP))
 4. GCD ([asciinema](https://asciinema.org/a/PZqjzML32FTWLS6g7sHMtOnRn))
 5. Progression ([asciinema](https://asciinema.org/a/a2PwalSi33puPPAmFxHdUr40R))
+6. Prime ([asciinema](https://asciinema.org/a/w7owj9Fve16rnzRukhFHvcoCh))
 0. Exit
 
 ## Run

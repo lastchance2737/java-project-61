@@ -1,9 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.games.Calc;
-import hexlet.code.games.Even;
-import hexlet.code.games.Gcd;
-import hexlet.code.games.Progression;
+import hexlet.code.games.*;
 
 import java.util.Scanner;
 
@@ -12,12 +9,14 @@ public class Engine {
     private static final String EVEN_RULE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
     private static final String GCD_RULE = "Find the greatest common divisor of given numbers.";
     private static final String PROGRESSION_RULE = "What number is missing in the progression?";
+    private static final String PRIME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     public static final int ROUNDS = 3;
     public static final int OPERATORS_COUNT = 3;
     public static final int PROGRESSION_STEP_FROM = 2;
     public static final int PROGRESSION_STEP_TO = 10;
     public static final int PROGRESSION_LENGTH_FROM = 5;
     public static final int PROGRESSION_LENGTH_TO = 10;
+    public static final int[] PRIME_NUMBERS = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101};
     private static String playerName;
     public static int choice;
     public static int index = 0;
@@ -54,6 +53,9 @@ public class Engine {
             case 5 -> {
                 ruleString = PROGRESSION_RULE;
             }
+            case 6 -> {
+                ruleString = PRIME_RULE;
+            }
             default -> {
             }
         }
@@ -68,6 +70,7 @@ public class Engine {
                 3 - Calc
                 4 - GCD
                 5 - Progression
+                6 - Prime
                 0 - Exit
                 Your choice:\s""");
         Scanner scanner = new Scanner(System.in);
@@ -89,6 +92,9 @@ public class Engine {
             case 5 -> {
                 Progression.game();
             }
+            case 6 -> {
+                Prime.game();
+            }
             default -> {
             }
         }
@@ -97,10 +103,6 @@ public class Engine {
     public static void wrongAnswer(String userAnswer, String correctAnswer) {
         System.out.println("'" + userAnswer + "' " + "is wrong answer ;(. Correct answer was '" + correctAnswer + "'.");
         System.out.println("Let's try again, " + playerName + "!");
-    }
-
-    public static void wrongAnswer(int userAnswer, int correctAnswer) {
-        wrongAnswer(Integer.toString(userAnswer), Integer.toString(correctAnswer));
     }
 
     public static void wrongAnswer(String userAnswer, int correctAnswer) {
@@ -112,18 +114,6 @@ public class Engine {
         if (Engine.index == Engine.ROUNDS) {
             Engine.congratulations();
         }
-    }
-
-    public static boolean isCorrectAnswer(int answer, int userAnswer) {
-        return answer == userAnswer;
-    }
-
-    public static boolean isCorrectAnswer(String answer, String userAnswer) {
-        return answer.equalsIgnoreCase(userAnswer);
-    }
-
-    public static boolean isCorrectAnswer(int answer, String userAnswer) {
-        return answer == Integer.parseInt(userAnswer);
     }
 
     private static void congratulations() {
@@ -148,12 +138,17 @@ public class Engine {
         return getRand(0, 100);
     }
 
-    public static boolean isNumeric(String string) {
-        return string != null && string.matches("-?[0-9.]+");
-    }
-
-
     public static int lowCommonMultiple(int a, int b) {
         return (a % b == 0) ? Math.abs(b) : lowCommonMultiple(b, a % b);
     }
+
+    public static boolean isPrimeNumber(int number) {
+        for (int primeNumber : PRIME_NUMBERS) {
+            if (number == primeNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
